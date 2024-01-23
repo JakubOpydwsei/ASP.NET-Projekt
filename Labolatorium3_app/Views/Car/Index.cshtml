@@ -1,0 +1,67 @@
+﻿@model List<Car>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Lista samochodów</h1>
+<a class="btn btn-primary" asp-controller="Car" asp-action="Create">Dodaj samochód</a>
+@* <a class="btn btn-secondary" asp-controller="Car" asp-action="CreateApi">Dodaj samochód (wersja z API)</a> *@
+
+@if (Model.Count > 0)
+{
+    <table class="table">
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].EngineCapacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Power)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].RegistrationNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Owner)
+            </th>
+            <th>
+                Akcje
+            </th>
+        </tr>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>
+                    @car.Model
+                </td>
+                <td>
+                    @car.Manufacturer
+                </td>
+                <td>
+                    @car.EngineCapacity
+                </td>
+                <td>
+                    @car.Power
+                </td>
+                <td>
+                    @car.RegistrationNumber
+                </td>
+                <td>
+                    @car.Owner
+                </td>
+                <td>
+                    <a class="btn btn-outline-primary" asp-controller="Car" asp-action="Update" asp-route-id="@car.Id">Edycja</a>
+                    <a class="btn btn-outline-info" asp-controller="Car" asp-action="Details" asp-route-id="@car.Id">Szczegóły</a>
+                    <a class="btn btn-outline-danger" asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id">Usuń</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
